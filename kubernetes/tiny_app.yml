@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tinyapp
+spec:
+  selector:
+    matchLabels:
+      app: tinyapp
+      tier: frontend
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: tinyapp
+        tier: frontend
+    spec:
+      containers:
+      - name: tinyapp
+        image:
+        resources:
+          requests:
+            cpu: 1
+            memory: 128Mi
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tinyapp
+  labels:
+    app: tinyapp
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: tinyapp
+    tier: frontend

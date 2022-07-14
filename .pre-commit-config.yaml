@@ -1,0 +1,43 @@
+repos:
+  - repo: 'https://github.com/pre-commit/pre-commit-hooks'
+    rev: v3.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: check-json
+      - id: check-added-large-files
+      - id: requirements-txt-fixer
+  - repo: 'https://github.com/asottile/pyupgrade'
+    rev: v2.34.0
+    hooks:
+      - id: pyupgrade
+        name: Pyupgrade
+        args:
+          - '--py38-plus'
+  - repo: 'https://github.com/psf/black'
+    rev: 22.3.0
+    hooks:
+      - id: black
+        name: Blacken
+  - repo: 'https://github.com/PyCQA/isort'
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: Force single line
+        stages:
+          - manual
+        args:
+          - '--force-single-line-imports'
+  - repo: 'https://github.com/myint/autoflake'
+    rev: v1.4
+    hooks:
+      - id: autoflake
+        name: autoflake
+        stages:
+          - manual
+        args:
+          - '--recursive'
+          - '--in-place'
+          - '--remove-all-unused-imports'

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} TinyUrls {% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+  <table class="table table-hover" style="width:max-content">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Tiny Url</th>
+        <th scope="col">Original Url</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for url in tinyurls %}
+      <tr>
+        <td scope="row">{{ url.short_url }}</td>
+        <td>{{ url.original_url }}</td>
+        <td>{{url.created}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
